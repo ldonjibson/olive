@@ -1,0 +1,17 @@
+{% autoescape off %}
+<p>Hi {{ username }}, <br/></p>
+
+<p>Thanks for Registering on {{ domain }} !!! <br/></p>
+
+<p> Copy and Paste the link below in your browser to confirm your registration: <br/></p>
+
+<a href="{{ domain }}/users/activate/{{ uid }}/{{ token }}/activate">{{ domain }}/users/activate/{{ uid }}/{{ token }}/activate</a> <br/>
+
+
+<p>If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead. <br/></p>
+
+<p>Enjoy the Experience and Reffer your Friends and Family. <br/></p>
+
+<p>Best Regards <br/>{{domain}}</p>
+{% endautoescape %}

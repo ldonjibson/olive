@@ -1,0 +1,89 @@
+{% extends 'users/base_accounts.html' %}
+{% load static bootstrap4 %}
+
+{% comment %}
+  {% load dashboardconfig %}
+{% DashboardConfigs as config %}
+{% endcomment %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block title %}  Login {% endblock %}
+{% block content %}
+<style>
+  .card{
+    background-color: #ffffff00!important;
+  }
+</style>
+
+  <div class="container" style="background-image:url({% static 'images/purple-1.png' %}); background-position:center center; background-size:cover">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-6 col-lg-6 col-md-6">
+        {{request.url}}
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0 ">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <div class="text-center">
+                    {% if config.site_logo %}<a href="/"><img src="{{config.site_logo.url}}" alt="{{config.site_name}}" title="{{config.site_name}}" width="30%"></a>{% endif %}
+                    <h1 class="h4 text-white mb-4">Login</h1>
+                  </div>
+                  <form id="mainForm" class="user" role="form" method="post">
+                    {% csrf_token %}                        
+                      {% bootstrap_form form %}
+                    {% buttons %}
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                      </div>
+                    </div>
+                    <button id="submit" class="btn btn-primary btn-user btn-block" type="submit">Login</button>
+                    <hr>
+                    {% comment %}
+                    <!-- <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-facebook btn-user btn-block">
+                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                    </a> -->
+                    {% endcomment %}
+                    <script type="text/javascript">
+                        $(function(){
+                            $(".alert-message").alert();
+                            $('#mainForm').submit(function(){
+                                $('#submit').button('loading');
+                            })
+                        });
+                        document.forms[1].elements[2].focus();
+                    </script>
+                    {% endbuttons %}
+                  </form>
+                  <hr>
+                    <div class="text-center text-white">
+                      <a class="small text-white" href="{% url 'users:password_reset' %}">Reset Password</a>
+                    </div>
+
+                    <div class="text-center text-white">
+                      <a class="small text-white" href="{% url 'users:signup_user' %}">Create an Account!</a>
+                    </div>
+                    <div class="text-center text-white py-3">
+                      <p class="m-0 text-center text-dark">Copyright © 2019</p>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}

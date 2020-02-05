@@ -1,0 +1,25 @@
+{% load static bootstrap4 %} {# Display django.contrib.messages as Bootstrap alerts #}
+{% comment %}
+  {% load dashboardconfig %}
+{% DashboardConfigs as config %}
+{% endcomment %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}{% block title %} Invalid Activation {% endblock %} {% block head_block %} {% endblock %} 
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Invalid Activation Code</h3>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

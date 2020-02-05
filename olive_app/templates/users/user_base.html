@@ -1,0 +1,48 @@
+<!-- Required Resources -->
+{% load static bootstrap4 %} {# Display django.contrib.messages as Bootstrap alerts #}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% comment %}
+      {% load dashboardconfig %}
+    {% DashboardConfigs as config %}
+    {% endcomment %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_messages %}
+    <title>{% block title %} {% endblock %}</title>
+    {% block head_block %} {% endblock %}
+    {% include "users/css.html" %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    {% include "users/user_menu.html" %}
+    <div class="my-5 pt-3">
+    {% block content %}
+
+    {% endblock content %}
+    </div>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    {% block footer %}
+    <footer class="py-5 bg-light" id="footer">
+      <div class="container">
+        <p class="m-0 text-center text-dark">Copyright © 2019</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+    {% endblock footer %}
+
+    {% block extrafooter %}
+    {% endblock extrafooter %}
+    <script src="" async defer></script>
+  </body>
+</html>

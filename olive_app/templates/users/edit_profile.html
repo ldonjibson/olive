@@ -1,0 +1,43 @@
+
+ {% load static bootstrap4 %} {# Display django.contrib.messages as Bootstrap alerts #}
+
+  <!-- The Modal -->
+  <div class="modal" id="editProfile">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Update Profile</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form id="mainForm" class="user" role="form" method="post", enctype="multipart/form-data">
+            {% csrf_token %}                        
+              {% bootstrap_form userExtended %}
+              {% bootstrap_form profileForm %}
+            {% buttons %}
+            <button id="submit" class="btn btn-primary btn-user btn-block" type="submit">Submit</button>
+            <script type="text/javascript">
+                $(function(){
+                    $(".alert-message").alert();
+                    $('#mainForm').submit(function(){
+                        $('#submit').button('loading');
+                    })
+                });
+                document.forms[1].elements[2].focus();
+            </script>
+            {% endbuttons %}
+          </form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>

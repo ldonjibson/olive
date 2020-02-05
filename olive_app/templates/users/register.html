@@ -1,0 +1,76 @@
+{% extends 'users/base_accounts.html' %}
+{% load static bootstrap4 %}
+
+{% comment %}
+  {% load dashboardconfig %}
+{% DashboardConfigs as config %}
+{% endcomment %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block title %}  Register {% endblock %}
+{% block content %}
+
+  <div class="container">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-6 col-lg-6 col-md-6">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="p-5">
+                  <div class="text-center">
+                    {% if config.site_logo %}<a href="/"><img src="{{config.site_logo.url}}" alt="{{config.site_name}}" title="{{config.site_name}}" width="30%"></a>{% endif %}
+                    <h1 class="h4 text-gray-900 mb-4">Create An Account!</h1>
+                  </div>
+                  <div><p class="text-warning">{{Error}}</p></div>
+                  <form id="mainForm" class="form" role="form" method="post">
+                    {% csrf_token %} 
+          					{% bootstrap_form register_form %}
+                    {% buttons %}
+                    <button id="submit" class="btn btn-primary btn-user btn-block" type="submit">Register</button>
+                    <hr>
+                    {% comment %}
+                    <!-- <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-facebook btn-user btn-block">
+                      <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                    </a> -->
+                    {% endcomment %}
+                    <script type="text/javascript">
+                        $(function(){
+                            $(".alert-message").alert();
+                            $('#mainForm').submit(function(){
+                                $('#submit').button('loading');
+                            })
+                        });
+                        document.forms[1].elements[2].focus();
+                    </script>
+                    {% endbuttons %}
+                  </form>
+                  <hr>
+                  {% comment %}
+                  <div class="text-center">
+                    <a class="small" href="{% url 'user_login:password_reset' %}">Reset Password</a>
+                  </div>
+                  {% endcomment %}
+
+                  <div class="text-center">
+                    <a class="small" href="{% url 'users:user_login' %}">Already Registered? Login!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}
