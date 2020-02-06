@@ -3,7 +3,7 @@ from decouple import config
 
 DEBUG = False
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = ['*', '*.herokuapp.com'] #config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
