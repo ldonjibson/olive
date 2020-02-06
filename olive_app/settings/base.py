@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'phone_field',
     'bootstrap4',
     # My Apps
+    'coreconfig',
     'users',
 ]
 

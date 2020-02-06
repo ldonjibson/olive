@@ -1,10 +1,9 @@
 from celery import shared_task
-# from saas_vbp.celery import app
+from olive_app.celery import app
 from django.db import connection
 from django.core import mail
 from django.core.mail.backends.smtp import EmailBackend
-# from coreconfig.models import SmtpEmailSettings
-from django.conf import settings
+from coreconfig import models
 
 @shared_task
 def sending_mail(subject, message, contact_list):
@@ -14,28 +13,15 @@ def sending_mail(subject, message, contact_list):
         con.open()
         print('Django connected to the SMTP server')
 
-        if settings.EMAIL_PORT == 1025 and settings.EMAIL_HOST == "127.0.0.1":
-          mail_setting = '' #models.SmtpEmailSettings.objects.last()
-          host = settings.EMAIL_HOST #mail_setting.smtp_email_host
-          print(host)
-          host_user = ''#mail_setting.smtp_email_host_user
-          host_pass = ''#mail_setting.smtp_email_host_password
-          host_port = settings.EMAIL_PORT #mail_setting.smtp_email_host_port
-          print(host_port)
-          host_sender_email = 'ajibolaolayanju@gmail.com' #mail_setting.smtp_email_host_sender_address
-          host_tls = ''#mail_setting.smtp_use_tls
-          host_ssl = ''#mail_setting.smtp_use_ssl
-          host_timeout = 10 #mail_setting.smtp_timeout
-        else:
-          mail_setting = models.SmtpEmailSettings.objects.last()
-          host = mail_setting.smtp_email_host
-          host_user = mail_setting.smtp_email_host_user
-          host_pass = mail_setting.smtp_email_host_password
-          host_port = mail_setting.smtp_email_host_port
-          host_sender_email = mail_setting.smtp_email_host_sender_address
-          host_tls = mail_setting.smtp_use_tls
-          host_ssl = mail_setting.smtp_use_ssl
-          host_timeout = mail_setting.smtp_timeout
+        mail_setting = models.SmtpEmailSettings.objects.last()
+        host = mail_setting.smtp_email_host
+        host_user = mail_setting.smtp_email_host_user
+        host_pass = mail_setting.smtp_email_host_password
+        host_port = mail_setting.smtp_email_host_port
+        host_sender_email = mail_setting.smtp_email_host_sender_address
+        host_tls = mail_setting.smtp_use_tls
+        host_ssl = mail_setting.smtp_use_ssl
+        host_timeout = mail_setting.smtp_timeout
 
         mail_obj = EmailBackend(
             host=host,
