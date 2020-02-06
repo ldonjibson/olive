@@ -31,7 +31,11 @@
         </ul>
         <div class="btn-group ml-4">
             <a href="javascript:;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% if request.user.user_profile.profile_photo %}
                 <img class="navbar-avatar rounded-circle" src="{{request.user.user_profile.profile_photo.url}}" />
+              {% else %}
+                <img class="navbar-avatar rounded-circle" src="" />
+              {% endif %}
             </a>
             <div class="dropdown-menu dropdown-menu-left mt-3">
                 <a class="dropdown-item" href="">Action</a>
