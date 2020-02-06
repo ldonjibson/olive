@@ -1,7 +1,7 @@
 from .base import *
 from decouple import config
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*', '*.herokuapp.com'] #config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
