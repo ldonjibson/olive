@@ -13,7 +13,7 @@
         <div class="col-md-3" id="left-bar">
             <div class="card">
                 <div class="card-body">
-                    <div class="text-center"><img class="navbar-avatar rounded-circle" src="{{user.user_profile.profile_photo.url}}" /></div>
+                    <div class="text-center"><img class="navbar-avatar rounded-circle" src="{{user.user_profile.get_photo_url}}" /></div>
                     <div class="h5">@{{user.username}}</div>
                     <div class="h7 text-muted">Fullname : {{user.get_full_name}}</div>
                     <div class="h7">Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
@@ -44,7 +44,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="mr-2">
-                                <img class="rounded-circle" width="45" src="{{member.user_profile.profile_photo.url}}" alt="">
+                                <img class="rounded-circle" width="45" src="{{member.user_profile.get_photo_url}}" alt="">
                             </div>
                             <a class="ml-2" href="{% url 'users:user_profile' username=member.username %}">
                                 <div class="h5 m-0">@{{member.username}}</div>
