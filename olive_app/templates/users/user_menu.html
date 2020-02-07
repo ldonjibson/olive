@@ -32,7 +32,7 @@
         <div class="btn-group ml-4">
             <a href="javascript:;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {% if request.user.user_profile.profile_photo %}
-                <img class="navbar-avatar rounded-circle" src="{{request.user.user_profile.profile_photo.url}}" />
+                <img class="navbar-avatar rounded-circle" src="{{request.user.user_profile.get_photo_url}}" />
               {% else %}
                 <img class="navbar-avatar rounded-circle" src="" />
               {% endif %}

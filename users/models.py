@@ -26,13 +26,20 @@ class UserProfile(models.Model):
   address = models.CharField(max_length=300, default='')
   postal_code = models.CharField(max_length=10, default='')
   phone = PhoneField(blank=True, help_text='Enter phone number')
-  profile_photo = models.ImageField(_("Profile Photo"), upload_to='media_house', height_field=None, width_field=None, max_length=None)
+  profile_photo = models.ImageField(_("Profile Photo"), upload_to='media_house', height_field=None, width_field=None, max_length=None, default='')
   email_confirmed = models.BooleanField(default=False)
   def __str__(self):
       return self.user.username
 
   def __unicode__(self):
       return self.user.username
+
+  @property
+  def get_photo_url(self):
+      if self.profile_photo and hasattr(self.profile_photo, 'url'):
+          return self.profile_photo.url
+      else:
+          return "/static/images/dummy-avatar.jpg"
 
 ''' Signal Fired After  User Created '''
 @receiver(post_save, sender=User)
