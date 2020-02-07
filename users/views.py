@@ -21,7 +21,10 @@ from .forms import ProfileUpdateForm, UserProfile, SignUpForm, UserUpdateForm
 from coreconfig import tasks
 
 def signup(request):
-  context=''
+  form = SignUpForm()
+  context	= {
+    'register_form': form,
+  }
   if request.method == 'POST':
     form = SignUpForm(request.POST)
     if form.is_valid():
@@ -45,10 +48,6 @@ def signup(request):
       #   tasks.sending_mail(subject, message, user.email)
       return redirect('users:account_activation_sent')
   else:
-    form = SignUpForm()
-    context	= {
-    'register_form': form,
-    }
     return render(request, 'users/register.html', context)
   return render(request, 'users/register.html', context)
 
