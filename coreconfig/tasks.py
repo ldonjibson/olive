@@ -5,7 +5,7 @@ from django.core import mail
 from django.core.mail.backends.smtp import EmailBackend
 from coreconfig import models
 
-@shared_task
+# @shared_task
 def sending_mail(subject, message, contact_list):
 
     try:
