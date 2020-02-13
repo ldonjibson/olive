@@ -80,18 +80,23 @@ input[type=text]{
   background-size: cover; 
   height: 100vh;
 }
-/*@media only screen and (max-width: 600px) {
-  body{
-    background-image:url({% static 'images/new-web.jpeg' %});
-    background-size: cover;
-  }
+@media only screen and (max-width: 720px) and (orientation: portrait) {
 
-  #ele{
-    background-image:url({% static 'images/redesign-BACKGROUND.png' %}); 
+  .ele{
+    background-image:url({% static 'images/new-design-1.png' %}); 
     background-position:center center; 
-    background-size:cover;
+    background-size: auto!important;
   }
-}*/
+}
+@media only screen and (max-width: 812px) and (orientation: landscape) {
+
+  .ele{
+    background-image:url({% static 'images/new-design-1.png' %}); 
+    background-position:center center; 
+    background-size: auto!important;
+  }
+}
+
 </style>
 <div class="ele">
   <div class="container centered">
